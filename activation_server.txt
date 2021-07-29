@@ -1,0 +1,15 @@
+source ~/venv/bin/activate
+export FLASK_ENV=development
+flask run
+
+export FLASK_APP=webapp && FLASK_ENV=development && export FLASK_DEBUG=1 && flask run
+
+
+https://pythobyte.com/using-sqlalchemy-with-flask-and-postgresql-056e4a45/
+flask db init
+flask db migrate
+flask db upgrade 
+
+
+Запуск beaver 
+dbeaver-ce #в терминале

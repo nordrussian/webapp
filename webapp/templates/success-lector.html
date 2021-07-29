@@ -1,0 +1,94 @@
+{% extends 'base.html'%}
+
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}   
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row">
+                        <div class="col">
+                            
+                        </div><!--end col-->
+
+                        
+                                                <div class="alert alert-success border-0" role="alert">
+                            <strong>Информация обновлена!</strong> Вы успешно обновили информацию
+                        </div>
+
+                    </div><!--end row-->                                                              
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div>
+        <!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <!-- <div id="user_map" class="pro-map" style="height: 220px"></div>                                      -->
+                    </div><!--end card-body-->                                
+                    <div class="card-body">
+                        <div class="dastone-profile">
+                            <div class="row">
+                                <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                                    <div class="dastone-profile-main">
+                                        <div class="dastone-profile-main-pic">
+                                            <img src="{{ url_for('static', filename='images/users/user-4.jpg')}}" alt="" height="110" class="rounded-circle">
+                                            <span class="dastone-profile_main-pic-change">
+                                                <i class="fas fa-camera"></i>
+                                            </span>
+                                        </div>
+                                        <div class="dastone-profile_user-detail">
+                                            <h5 class="dastone-user-name">{{lector.surname}} {{lector.lastname}} {{lector.middlename}}</h5>                                                        
+                                            <p class="mb-0 dastone-user-name-post">{{lector.rang}}. {{lector.city}}</p>
+                                            <p class="mb-0 dastone-user-name-post"><a href="/all-lectors/{{ lector.lecturer_id }}/update">Редактировать</a></p>                                                       
+                                        </div>
+                                    </div>                                                
+                                </div><!--end col-->
+                                
+                                <div class="col-lg-4 ml-auto align-self-center">
+                                    <ul class="list-unstyled personal-detail mb-0">
+                                        <li class=""><i class="las la-phone mr-2 text-secondary font-22 align-middle"></i> <b> Телефон </b> : {{lector.tel}}</li>
+                                        <li class="mt-2"><i class="las la-envelope text-secondary font-22 align-middle mr-2"></i> <b> Email </b> : {{lector.email}}</li>
+                                        <li class="mt-2"><i class="las la-address-card text-secondary font-22 align-middle mr-2"></i> <b> Дата рождения </b> : {{lector.birthday}}</li>
+                                        <li class="mt-2"><i class="las la-globe text-secondary font-22 align-middle mr-2"></i> <b> Место и адрес работы </b> : {{lector.work}}</li>
+                                                                                                                    
+
+                                        
+                                    </ul>
+                                    
+                                </div><!--end col-->
+                                
+                            </div><!--end row-->
+
+                            
+                        </div><!--end f_profile-->    
+                        
+                        
+                          
+                            
+                        
+
+                    </div><!--end card-body-->          
+                </div> <!--end card-->    
+            </div>
+        
+        
+
+    </div><!-- container -->
+
+   
+            {% endblock %}
+</div> <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+   
+        
+        
+  
+
+</html>

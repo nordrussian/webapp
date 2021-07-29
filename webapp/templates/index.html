@@ -1,0 +1,407 @@
+{% extends 'base.html'%}
+
+
+{% block title %} Привет Димон {% endblock %}
+
+{% block body %}   
+
+
+     <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="page-title">Список лекторов</h4>
+                                        <!--<ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="javascript:void(0);">Dastone</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript:void(0);">Ecommerce</a></li>
+                                            <li class="breadcrumb-item active">List</li>
+                                        </ol>-->
+                                    </div><!--end col-->
+                                    <div class="col-auto align-self-center">
+                                        <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
+                                            <span class="day-name" id="Day_Name">Today:</span>&nbsp;
+                                            <span class="" id="Select_date">Jan 11</span>
+                                            <i data-feather="calendar" class="align-self-center icon-xs ml-1"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">
+                                            <i data-feather="download" class="align-self-center icon-xs"></i>
+                                        </a>
+                                    </div><!--end col-->  
+                                </div><!--end row-->                                                              
+                            </div><!--end page-title-box-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                    <!-- end page title end breadcrumb -->
+                    
+                    <div class="card-body">  
+                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>ФИО</th>
+                                    <th>Дата рождения</th>
+                                    <th>Телефон</th>
+                                    <th>Email</th>
+                                    <th>Город</th>
+                                    <th>Место работы</th>
+                                    <th>Ранг</th>
+                                    <th>Действия</th>
+                                </tr>
+                                </thead>
+
+
+                            <tbody>
+                           
+                                                        
+
+                            {% for lector in all_lectors %}
+                            <tr>
+                                <td><a href="/all-lectors/{{ lector.lecturer_id }}">{{lector.surname}}  {{lector.lastname}}  {{lector.middlename}} </a> </td>
+                                <td>{{lector.birthday}}</td>
+                                <td>{{lector.tel}}></td>
+                                <td>{{lector.email}}</td>
+                                <td>{{lector.city}}</td>
+                                <td>{{lector.work}}</td>
+                                <td>{{lector.rang}}</td>
+                                <td>                                                       
+                                    <a href="/all-lectors/{{ lector.lecturer_id }}" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                    <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %} 
+                            
+                            </tbody>
+                        </table>    
+                        
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="datatable-buttons_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled" id="datatable-buttons_previous">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                        </li>
+
+                                        <li class="paginate_button page-item active">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                                        </li>
+
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+                                        </li>
+
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+                                        </li>
+                                        
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="4" tabindex="0" class="page-link">4</a>
+                                        </li>
+                                        
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="5" tabindex="0" class="page-link">5</a>
+                                        </li>
+                                        
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="6" tabindex="0" class="page-link">6</a>
+                                        </li>
+                                        
+                                        <li class="paginate_button page-item next" id="datatable-buttons_next">
+                                            <a href="#" aria-controls="datatable-buttons" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Category</th>
+                                        <th>Pics</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Avai.Color</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/img-1.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Bata Shoes</a> 
+                                                <br>
+                                                <span class="text-muted font-13">size-08 (Model 2020)</span> 
+                                            </p>
+                                        </td>
+                                        <td>Sports</td>
+                                        <td>32</td>
+                                        <td>$39</td>
+                                        <td><span class="badge badge-soft-warning">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-success"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-pink"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-warning"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/img-2.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Apple Watch</a> 
+                                                <br>
+                                                <span class="text-muted font-13">40mm & 44mm case size</span> 
+                                            </p>
+                                        </td>
+                                        <td>Interior</td>
+                                        <td>10</td>
+                                        <td>$99</td>
+                                        <td><span class="badge badge-soft-pink">Sold</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-pink"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/03.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Dastone Gear SM-R322</a> 
+                                                <br>
+                                                <span class="text-muted font-13">Super AMOLED display</span> 
+                                            </p>
+                                        </td>
+                                        <td>Footwear</td>
+                                        <td>24</td>
+                                        <td>$49</td>
+                                        <td><span class="badge badge-soft-secondary">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-success"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-warning"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/04.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Dastone Washable Face Masks</a> 
+                                                <br>
+                                                <span class="text-muted font-13">Gives germs protection</span> 
+                                            </p>
+                                        </td>
+                                        <td>Sports</td>
+                                        <td>8</td>
+                                        <td>$49</td>
+                                        <td><span class="badge badge-soft-secondary">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-success"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-warning"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/01.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Dastone 360° 1080p Full HD</a> 
+                                                <br>
+                                                <span class="text-muted font-13">Day-Night Vision</span> 
+                                            </p>
+                                        </td>
+                                        <td>Life Style</td>
+                                        <td>52</td>
+                                        <td>$89</td>
+                                        <td><span class="badge badge-soft-purple">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-pink"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-warning"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/06.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">New Morden Chair</a> 
+                                                <br>
+                                                <span class="text-muted font-13">size-05 (Model 2019)</span> 
+                                            </p>
+                                        </td>
+                                        <td>Interior</td>
+                                        <td>6</td>
+                                        <td>$20</td>
+                                        <td><span class="badge badge-soft-warning">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-success"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-pink"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-warning"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/05.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Dastone Fever Gun</a> 
+                                                <br>
+                                                <span class="text-muted font-13">Used for Baby and Adult</span> 
+                                            </p>
+                                        </td>
+                                        <td>Interior</td>
+                                        <td>32</td>
+                                        <td>$39</td>
+                                        <td><span class="badge badge-soft-warning">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-success"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-pink"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-warning"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/02.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Nike Air Max 101</a> 
+                                                <br>
+                                                <span class="text-muted font-13">Size-05 to 13 (Model 2020)</span> 
+                                            </p>
+                                        </td>
+                                        <td>Sports</td>
+                                        <td>32</td>
+                                        <td>$39</td>
+                                        <td><span class="badge badge-soft-warning">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-success"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/img-5.png"  alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">American Bag</a> 
+                                                <br>
+                                                <span class="text-muted font-13">size-08 (Model 2020)</span> 
+                                            </p>
+                                        </td>
+                                        <td>Sports</td>
+                                        <td>32</td>
+                                        <td>$39</td>
+                                        <td><span class="badge badge-soft-warning">Stock</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-success"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-pink"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-warning"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="static/images/products/img-3.png" alt="" height="40">
+                                            <p class="d-inline-block align-middle mb-0">
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Sneakers shoes</a> 
+                                                <br>
+                                                <span class="text-muted font-13">Size-05 to 13 (Model 2020)</span> 
+                                            </p>
+                                        </td>
+                                        <td>Interior</td>
+                                        <td>10</td>
+                                        <td>$99</td>
+                                        <td><span class="badge badge-soft-pink">Sold</span></td>
+                                        <td>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-pink"></i></li>
+                                                <li class="list-inline-item align-middle"><i class="fas fa-circle text-info"></i></li>
+                                            </ul>
+                                        </td>
+                                        <td>                                                       
+                                            <a href="#" class="mr-2"><i class="las la-pen text-info font-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-danger font-18"></i></a>
+                                        </td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                </table>        
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+
+                </div><!-- container -->
+            </div> {% endblock %}
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+   
+        
+        
+  
+
+</html>

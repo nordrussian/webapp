@@ -1,0 +1,254 @@
+{% extends 'base.html'%}
+
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}   
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="page-title">Редактирование профиля лектора</h4>
+                        </div><!--end col-->
+                        <div class="col-auto align-self-center">
+                            <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
+                                <span class="day-name" id="Day_Name">Today:</span>&nbsp;
+                                <span class="" id="Select_date">Jan 11</span>
+                                <i data-feather="calendar" class="align-self-center icon-xs ml-1"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i data-feather="download" class="align-self-center icon-xs"></i>
+                            </a>
+                        </div><!--end col-->  
+                    </div><!--end row-->                                                              
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div>
+        <!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <!-- <div id="user_map" class="pro-map" style="height: 220px"></div>                                      -->
+                    </div><!--end card-body-->                                
+                    <div class="card-body">
+                        <div class="dastone-profile">
+                            <div class="row">
+                                <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                                    <div class="dastone-profile-main">
+                                        <div class="dastone-profile-main-pic">
+                                            <img src="{{ url_for('static', filename='images/users/user-4.jpg')}}" alt="" height="110" class="rounded-circle">
+                                            <span class="dastone-profile_main-pic-change">
+                                                <i class="fas fa-camera"></i>
+                                            </span>
+                                        </div>
+                                        <div class="dastone-profile_user-detail">
+                                            <h5 class="dastone-user-name">{{lector.surname}} {{lector.lastname}} {{lector.middlename}}</h5>                                                        
+                                            <p class="mb-0 dastone-user-name-post">{{lector.rang}}. {{lector.city}}</p>                                                        
+                                        </div>
+                                    </div>                                                
+                                </div><!--end col-->
+                                
+                                <div class="col-lg-4 ml-auto align-self-center">
+                                    <ul class="list-unstyled personal-detail mb-0">
+                                        <li class=""><i class="las la-phone mr-2 text-secondary font-22 align-middle"></i> <b> Телефон </b> : {{lector.tel}}</li>
+                                        <li class="mt-2"><i class="las la-envelope text-secondary font-22 align-middle mr-2"></i> <b> Email </b> : {{lector.email}}</li>
+                                        <li class="mt-2"><i class="las la-address-card text-secondary font-22 align-middle mr-2"></i> <b> Дата рождения </b> : {{lector.birthday}}</li>
+                                        <li class="mt-2"><i class="las la-globe text-secondary font-22 align-middle mr-2"></i> <b> Место и адрес работы </b> : {{lector.work}}</li>
+                                                                                                                    
+
+                                        
+                                    </ul>
+                                   
+                                </div><!--end col-->
+                                
+                            </div><!--end row-->
+
+                            
+                        </div><!--end f_profile-->                                                                                
+                    </div><!--end card-body-->          
+                </div> <!--end card-->    
+            </div>
+        
+        
+
+    </div><!-- container -->
+
+
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Внесите данные лектора</h4>
+                    
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <form class="">
+                        <div class="row">
+                            
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Фамилия</label>
+                                    <input type="text" name='surname' class="form-control" id="surname" value = "{{lector.surname}}"required="">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Имя</label>
+                                    <input type="text" name='lastname'class="form-control" id="lastname" value = "{{lector.lastname}}" required="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Отчество</label>
+                                    <input type="text" name='middlename'class="form-control" id="middlename" value = "{{lector.middlename}}" required="">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subject">Телефон</label>
+                                    <input type="tel" name='tel' class="form-control" id="phone" value = "{{lector.tel}}" required="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="useremail">E-mail</label>
+                                    <input type="email" name='email' class="form-control" id="email" value = "{{lector.email}}" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subject">Город проживания</label>
+                                    <input type="text" name='city'class="form-control" id="city" value = "{{lector.city}}" required="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Серия и номер паспорта</label>
+                                    <input type="text" name='passport_number'class="form-control" id="passport_number" value = "{{lector.passport_number}}" required pattern = "[0-9]{10}" required="">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Дата выдачи</label>
+                                    <input type="date" name='issued'class="form-control" id="issued" value = "{{lector.issued}}" required="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Когда и кем выдан</label>
+                                    <input type="text" name='passport_who'class="form-control" id="passport_who" value = "{{lector.passport_who}}" required="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Адрес проживания</label>
+                                    <input type="text" name='adress'class="form-control" id="adress" value = "{{lector.adress}}" required="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Дата рождения</label>
+                                    <input type="date" name='birthday'class="form-control" id="birthday" value = "{{lector.birthday}}" required="">
+                                </div>
+                            </div>
+
+                            
+
+
+
+                        </div>
+                        
+                    
+                </div><!--end card-body-->
+            </div><!--end card-->
+
+            </div> <!-- end col -->
+
+            <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Данные договора</h4>
+                    <p class="text-muted mb-0">Внимательно внесите данные в базу</p>
+                </div><!--end card-header-->
+                <div class="card-body">
+                    
+                        <div class="row">
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subject">Номер договора</label>
+                                    <input type="text" name='agreement_number' class="form-control" id="agreement_number" value = "{{lector.agreement_number}}" required="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="useremail">Дата заключения договора</label>
+                                    <input type="date" name='created_at' class="form-control" id="created_at" value = "{{lector.created_at}}" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subject">Место и адрес работы</label>
+                                    <input type="text" name='work'class="form-control" id="work" value = "{{lector.work}}" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group row">
+
+                            <div class="col-lg-4">
+                                <div class="custom-control custom-switch switch-primary">
+                                    <input type="checkbox" name='status'class="custom-control-input" id="status" checked>
+                                    <label class="custom-control-label" for="customSwitchPrimary">Активный</label>
+                                </div>
+                            </div> -->
+                            
+                            <div class="col-sm-4">
+                                <select class="form-control" value = "{{lector.rang}}" name='rang'>
+                                    <option>Ранг КОЛа</option>
+                                    <option>Локальный</option>
+                                    <option>Региональный</option>
+                                    <option>Национальный</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    
+
+                </div><!--end card-body-->
+                <button type="submit" class="btn btn-primary btn-xl">Отправить</button>
+                
+            </div>
+            
+            
+</form>
+            {% endblock %}
+</div> <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+   
+        
+        
+  
+
+</html>
