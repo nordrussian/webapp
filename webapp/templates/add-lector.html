@@ -4,6 +4,17 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block body %}   
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-warning" role='alert'>
+    {%for message in messages%}
+        {{message}} <br>
+    {%endfor%}
+</div>
+{% endif %}
+{% endwith %}
+
 <div class="page-content">
     <div class="container-fluid">
         <!-- Page-Title -->
@@ -30,7 +41,8 @@
             </div><!--end col-->
         </div><!--end row-->
         <!-- end page title end breadcrumb -->
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{ url_for('lector.add_lector_process') }}" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
 
                         <div class="row">
                         <div class="col-lg-6">
@@ -46,79 +58,81 @@
                                             
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="username">Фамилия</label>
-                                                    <input type="text" name='surname' class="form-control" id="surname" required="">
+                                                    <label for="username">{{form.lastname.label}}</label>
+                                                    {{ form.lastname (class="form-control")}}
+                                                </div>
+                                            </div>
+
+                                            
+
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="username">{{form.name.label}}</label>
+                                                    {{ form.name(class="form-control") }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="username">{{form.middlename.label}}</label>
+                                                    {{ form.middlename(class="form-control") }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="subject">{{form.tel.label}}</label>
+                                                    {{ form.tel(class="form-control") }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="useremail">{{form.email.label}}</label>
+                                                    {{ form.email(class="form-control") }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="subject">{{form.city.label}}</label>
+                                                    {{ form.city(class="form-control") }} 
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="username">{{form.passport_number.label}}</label>
+                                                    {{ form.passport_number(class="form-control") }} 
                                                 </div>
                                             </div>
 
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="username">Имя</label>
-                                                    <input type="text" name='lastname'class="form-control" id="lastname" required="">
+                                                    <label for="username">{{form.issued.label}}</label>
+                                                    {{ form.issued(class="form-control") }}
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="username">Отчество</label>
-                                                    <input type="text" name='middlename'class="form-control" id="middlename" required="">
+                                                    <label for="username">{{form.passport_who.label}}</label>
+                                                    {{ form.passport_who(class="form-control") }}
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="subject">Телефон</label>
-                                                    <input type="tel" name='tel' class="form-control" id="subject" required="">
+                                                    <label for="username">{{form.adress.label}}</label>
+                                                    {{ form.adress(class="form-control") }}
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="useremail">E-mail</label>
-                                                    <input type="email" name='email' class="form-control" id="email" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="subject">Город проживания</label>
-                                                    <input type="text" name='city'class="form-control" id="city" required="">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="username">Серия и номер паспорта</label>
-                                                    <input type="text" name='passport_number'class="form-control" id="passport_number" required="">
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="username">Дата выдачи</label>
-                                                    <input type="date" name='issued'class="form-control" id="issued" required="">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="username">Когда и кем выдан</label>
-                                                    <input type="text" name='passport_who'class="form-control" id="passport_who" required="">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="username">Адрес проживания</label>
-                                                    <input type="text" name='adress'class="form-control" id="adress" required="">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="username">Дата рождения</label>
-                                                    <input type="date" name='birthday'class="form-control" id="birthday" required="">
+                                                    <label for="username">{{form.birthday.label}}</label>
+                                                    {{ form.birthday(class="form-control") }}
                                                 </div>
                                             </div>
 
@@ -146,42 +160,43 @@
                                             
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="subject">Номер договора</label>
-                                                    <input type="text" name='agreement_number' class="form-control" id="agreement_number" required="">
+                                                    <label for="subject">{{form.agreement_number.label}}</label>
+                                                    {{form.agreement_number(class="form-control")}}
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="useremail">Дата заключения договора</label>
-                                                    <input type="date" name='created_at' class="form-control" id="created_at" required="">
+                                                    <label for="useremail">{{form.created_at.label}}</label>
+                                                    {{form.created_at(class="form-control")}}
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="subject">Место и адрес работы</label>
-                                                    <input type="text" name='work'class="form-control" id="work" required="">
+                                                    <label for="subject">{{form.work.label}}</label>
+                                                    {{form.work(class="form-control")}}
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
-                                                <select class="form-control" name='rang'>
-                                                    <option>Ранг КОЛа</option>
+                                                <select>
+                                                    {{form.rang(class="form-control")}}
+                                                    <option>{{form.rang.label}}</option>
                                                     <option>Локальный</option>
                                                     <option>Региональный</option>
                                                     <option>Национальный</option>
                                                 </select>
                                             </div>
 
-                                            <div class="col-md-8">
+                                            <!-- <div class="col-md-8">
                                                 <div class="form-group">
-                                                    <!-- <label>Файл договора</label> -->
+                                                    <label>Файл договора</label> 
                                                     <div class="custom-file">
                                                       <input type="file" class="custom-file-input" name="image" id="image">
                                                       <label class="custom-file-label" for="image">Выберите файл договора...</label>
                                                     </div>
                                                   </div>
-                                                </div>
+                                                </div> -->
 
                                         </div>
 
@@ -203,7 +218,7 @@
                                 </div><!--end card-body-->
                             </div>
                             
-                            <button type="submit" class="btn btn-primary btn-xl">Отправить</button>
+                            <button type="submit" class="btn btn-primary btn-xl">{{ form.submit }}</button>
                         </form>
                                     </div>
 

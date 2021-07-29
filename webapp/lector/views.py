@@ -1,51 +1,45 @@
 #  from webapp.db import db
-# from lector.forms import AddForm
-from flask import Blueprint, redirect, render_template
-# from webapp.lector.models import Lecturer
+from webapp.lector.forms import AddForm
+from flask import Blueprint, redirect, render_template, flash
+from webapp.db import db
+from webapp.lector.models import Lecturer
 
 blueprint = Blueprint('lector', __name__)
 
 @blueprint.route("/", methods=['POST', 'GET']) # add
 def home():
-    return 'Hello123545'
+    # return 'Hello123545'
     all_lectors = Lecturer.query.all()
     return render_template("index.html", all_lectors=all_lectors)  # add
 
 
-# @blueprint.route('/add-lector', methods=['POST','GET'])
-# def add_lector():
-#     form = AddForm()
-#     return render_template('html', form=form)
+@blueprint.route('/add-lector')
+def add_lector():
+     form = AddForm()
+     return render_template('add-lector.html', form=form)
 
-#     if request.method == "POST":
-#         name = request.form['surname']
-#         lastname = request.form['lastname']
-#         middlename = request.form['middlename']
-#         birthday = request.form['birthday']
-#         tel = request.form['tel']
-#         email = request.form['email']
-#         city = request.form['city']
-#         passport_number = request.form['passport_number']
-#         passport_who = request.form['passport_who']
-#         issued = request.form['issued']
-#         adress = request.form['adress']
-#         agreement_number = request.form['agreement_number']
-#         work = request.form['work']
-#         created_at = request.form['created_at']
-#    #     status = request.form['status']
-#         rang = request.form['rang']
-#         new_lecturer = Lecturer(name=name, lastname=lastname, 
-#         middlename=middlename, birthday=birthday, tel=tel, email=email, 
-#         city=city, passport_number=passport_number, passport_who=passport_who, 
-#         issued=issued, adress=adress, agreement_number=agreement_number, work=work,
-#         created_at=created_at, rang=rang ) # создаем объект в памяти соответствующий БД
-#         # db.session.add(new_lecturer) # Вставка алхимии в строчку
-#         # db.session.commit() # подтверждение изменений
-#         return redirect('/add-success') # проброс на главную
-        
-#     else:
-#         new_lecturer = Lecturer.query.order_by(Lecturer.created_at).all()  # считывает из таблицы лекторов все строчки и сортировка по дате добавления
-# #     return render_template("add-lector.html", title="Добавление лектора в базу")
+@blueprint.route('/add-lector-process', methods=['POST'])
+def add_lector_process(): 
+    form = AddForm()
+    new_lecturer = Lecturer(name=form.name.data, 
+                            lastname=form.lastname.data,
+                            middlename=form.middlename.data,
+                            birthday=form.birthday.data,
+                            tel=form.tel.data,
+                            email=form.email.data,
+                            city=form.city.data,
+                            passport_number=form.passport_number.data,
+                            passport_who=form.passport_who.data,
+                            issued=form.issued.data,
+                            adress=form.adress.data,
+                            agreement_number=form.agreement_number.data,
+                            work=form.work.data,
+                            created_at=form.created_at.data,
+                            rang=form.rang.data)
+    db.session.add(new_lecturer)
+    db.session.commit()
+    flash ('Лектор добавлен') 
+    return render_template('index.html', form=form)
 
     
 
